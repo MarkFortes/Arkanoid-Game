@@ -62,8 +62,19 @@ function init(){
 function dibujar(){
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   dibujarBola();
+  logicaBola();
   dibujarPaletas();
+}
 
+function dibujarBola(){
+  ctx.beginPath();
+  ctx.arc(bola.x, bola.y, bola.radio, 0, Math.PI*2, false);
+  ctx.fillStyle = "0095DD";
+  ctx.fill();
+  ctx.closePath();
+}
+
+function logicaBola(){
   //Rebote arriba y abajo
   if (bola.y - bola.radio < 0) { //rebote en techo
     partida.muerto = true;;
@@ -82,17 +93,9 @@ function dibujar(){
   if (bola.y - bola.radio <= paletaArriba.y && (bola.x >= paletaArriba.x && bola.x <= (paletaArriba.x + paletaArriba.anchura))) {
     dy = -dy;
   }
-
+  
   bola.x += dx;
   bola.y += dy;
-}
-
-function dibujarBola(){
-  ctx.beginPath();
-  ctx.arc(bola.x, bola.y, bola.radio, 0, Math.PI*2, false);
-  ctx.fillStyle = "0095DD";
-  ctx.fill();
-  ctx.closePath();
 }
 
 function dibujarPaletas(){

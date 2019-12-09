@@ -1,3 +1,12 @@
 canvas{
-  border:1px solid black;
+  padding: 0;
+  margin: auto;
+  display: block;
+  left: 0;
+  right: 0;
+  border: 1px solid black;
+}
+
+p{
+  text-align: center;
 }

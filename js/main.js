@@ -11,14 +11,15 @@ var teclaIzqPulsada = false;
 var teclaDerPulsada = false;
 var teclaAPulsada = false;
 var teclaDPulsada = false;
+var teclaEspacioPulsada = false;
 
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
 
 function keyDownHandler(e){
-  if(e.keyCode == 37){
+  if(e.keyCode == 37){ //tecla flecha izquierda
     teclaIzqPulsada = true;
-  }else if (e.keyCode == 39) {
+  }else if (e.keyCode == 39) { //tecla flecha derecha
     teclaDerPulsada = true;
   }
   if(e.keyCode == 65){ //tecla A
@@ -26,18 +27,24 @@ function keyDownHandler(e){
   }else if (e.keyCode == 68) { //tecla B
     teclaDPulsada = true;
   }
+  if (e.keyCode == 32) { //tecla espacio
+    teclaEspacioPulsada = true;
+  }
 }
 
 function keyUpHandler(e){
-  if(e.keyCode == 37){
+  if(e.keyCode == 37){ //tecla flecha izquierda
     teclaIzqPulsada = false;
-  }else if (e.keyCode == 39) {
+  }else if (e.keyCode == 39) { //tecla flecha derecha
     teclaDerPulsada = false;
   }
   if(e.keyCode == 65){ //tecla A
     teclaAPulsada = false;
   }else if (e.keyCode == 68) { //tecla B
     teclaDPulsada = false;
+  }
+  if(e.keyCode == 32){ //tecla espacio
+    teclaEspacioPulsada = false;
   }
 }
 
@@ -49,8 +56,12 @@ function loop(){
     logicaPaletaAbajo();
     logicaPaletaArriba();
   }else if (partida.muerto == true) {
-    alert("Fin de la partida");
-    reiniciar();
+    ctx.font = "30px verdana";
+    ctx.fillStyle = "#555555";
+    ctx.fillText("Pulsa START para reiniciar",150,200);
+    if (teclaEspacioPulsada == true) {
+      reiniciar();
+    }
   }
 }
 
@@ -93,7 +104,7 @@ function logicaBola(){
   if (bola.y - bola.radio <= paletaArriba.y && (bola.x >= paletaArriba.x && bola.x <= (paletaArriba.x + paletaArriba.anchura))) {
     dy = -dy;
   }
-  
+
   bola.x += dx;
   bola.y += dy;
 }

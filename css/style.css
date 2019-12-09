@@ -5,8 +5,14 @@ canvas{
   left: 0;
   right: 0;
   border: 1px solid black;
+  background-color: white;
 }
 
 p{
   text-align: center;
+  font-family: impact;
+}
+
+*{
+  background-color: #EAE2E0;
 }

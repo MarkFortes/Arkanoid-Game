@@ -6,7 +6,7 @@ var dy = 4;
 var bola = {x:300, y:200, radio:10};
 var paletaArriba = {x:260, y:50, anchura:80, altura:10}
 var paletaAbajo = {x:260, y:350, anchura:80, altura:10};
-var partida = {muerto:false};
+var partida = {muerto:true};
 var teclaIzqPulsada = false;
 var teclaDerPulsada = false;
 var teclaAPulsada = false;
@@ -53,12 +53,13 @@ setInterval(loop, 1000/FPS);
 function loop(){
   if (partida.muerto == false) {
     dibujar();
+    logicaBola();
     logicaPaletaAbajo();
     logicaPaletaArriba();
   }else if (partida.muerto == true) {
     ctx.font = "30px verdana";
     ctx.fillStyle = "#555555";
-    ctx.fillText("Pulsa START para reiniciar",150,200);
+    ctx.fillText("Pulsa START para empezar",150,200);
     if (teclaEspacioPulsada == true) {
       reiniciar();
     }
@@ -73,7 +74,6 @@ function init(){
 function dibujar(){
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   dibujarBola();
-  logicaBola();
   dibujarPaletas();
 }
 
